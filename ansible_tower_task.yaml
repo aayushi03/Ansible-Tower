@@ -6,6 +6,7 @@
     tasks:
       - name: Checking if httpd is installed or not
         command: yum list installed httpd
+        sudo: no
         register: result
         failed_when: result.rc == 1
       - debug:
@@ -16,6 +17,7 @@
           path: /var/www/html/ssl_log
           mode: 0755
           state: directory
+          sudo: no
       - debug:
           msg: "Created the directory"
           
@@ -23,5 +25,6 @@
         copy: 
           dest: /var/www/html/index.html
           content: "{{ ansible_hostname }} and {{ ansible_default_ipv4.address }} has been customized "
+          sudo: no
       - debug:
           msg: "Created index file"
