@@ -8,14 +8,20 @@
         command: yum list installed httpd
         register: result
         failed_when: result.rc == 1
+      - debug:
+          msg: "Package checking done"
         
       - name: Create log directory to store ssl log
         file:
           path: /var/www/html/ssl_log
           mode: 0755
           state: directory
+      - debug:
+          msg: "Created the directory"
           
       - name: Create index.html
         copy: 
           dest: /var/www/html/index.html
           content: "{{ ansible_hostname }} and {{ ansible_default_ipv4.address }} has been customized "
+      - debug:
+          msg: "Created index file"
