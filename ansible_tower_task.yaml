@@ -2,7 +2,7 @@
   - name: Ansible Tower task
     hosts: localhost
     gather_facts: yes
-    become: yes
+    become: no
     tasks:
       - name: Checking if httpd is installed or not
         command: yum list installed httpd
